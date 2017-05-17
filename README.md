@@ -95,18 +95,3 @@ dependencies {
 ```
 SoundWaveSender.getInstance().stopSend();
 ```
-
->截图
-
-![](https://github.com/jwkj/SoundwaveDemo/blob/master/demo.gif)
-
-
-**温馨提示：**
-
-- 建议将手机音量调至最大
-
-- 建议将手机靠近设备30cm以内
-
-- 需要将手机连接到wifi
-
-- 暂不支持5G的wifi
