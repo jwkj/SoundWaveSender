@@ -3,21 +3,17 @@ package com.jwkj.soundwave.bean;
 
 import com.jwkj.soundwave.utils.ByteOptionUtils;
 
-/**
- * 附近的设备
- * Created by jwkj on 2017/5/16.
- */
 
 public class NearbyDevice {
-    private int cmd;//接收的命令id
+    private int cmd;
     private int errCode;
-    private int msgVersion;//消息版本
-    private int currVersion;//当前版本号
-    private int deviceId;//设备id
-    private int deviceType;//设备类型
-    private int deviceSubType;//设备子类型
-    private int pwdFlag;//有无密码标记，1有密码，0无密码
-    private String ip;//IP地址
+    private int msgVersion;
+    private int currVersion;
+    private int deviceId;
+    private int deviceType;
+    private int deviceSubType;
+    private int pwdFlag;
+    private String ip;
 
     public static NearbyDevice getDeviceInfoByByteArray(byte[] data) {
         NearbyDevice device = new NearbyDevice();

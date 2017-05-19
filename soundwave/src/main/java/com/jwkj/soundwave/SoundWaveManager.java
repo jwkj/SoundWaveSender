@@ -5,10 +5,6 @@ import android.content.Context;
 import com.larksmart.emtmf.jni.EMTMFOptions;
 import com.lsemtmf.genersdk.tools.emtmf.EMTMFSDK;
 
-/**
- * 声波管理器---目前只管管理初始化
- * Created by jwkj on 2017/5/17.
- */
 
 public class SoundWaveManager {
     public static boolean init(Context context) {
