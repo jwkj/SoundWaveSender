@@ -27,4 +27,5 @@ dependencies {
     compile 'com.jwkj:udpsender:v1.4.0'
     compile 'com.android.support:appcompat-v7:22.+'
     testCompile 'junit:junit:4.12'
+    compile project(path: ':soundwave')
 }

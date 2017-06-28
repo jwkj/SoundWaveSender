@@ -2,9 +2,9 @@ package com.jwkj.soundwave;
 
 import android.content.Context;
 
-import com.hdl.udpsenderlib.UDPReceiver;
 import com.hdl.udpsenderlib.UDPResult;
 import com.hdl.udpsenderlib.UDPResultCallback;
+import com.hdl.udpsenderlib.UDPSender;
 import com.jwkj.soundwave.bean.NearbyDevice;
 import com.lsemtmf.genersdk.tools.emtmf.EMTMFSDK;
 import com.lsemtmf.genersdk.tools.emtmf.EMTMFSDKListener;
@@ -46,8 +46,14 @@ public class SoundWaveSender {
     }
     public void send(ResultCallback callback) {
         this.callback = callback;
+
         EMTMFSDK.getInstance(mContext).sendWifiSet(mContext, ssid, pwd);
-        UDPReceiver.getInstance().with(mContext).setPort(port).receive(callback);
+//        UDPReceiver.getInstance().with(mContext).setPort(port).receive(callback);
+        UDPSender.getInstance()
+                .setInstructions(new byte[]{1})
+                .setTargetPort(port)
+                .setLocalReceivePort(port)
+                .start(callback);
     }
 
     UDPResultCallback ca = new UDPResultCallback() {
@@ -55,7 +61,8 @@ public class SoundWaveSender {
         public void onNext(UDPResult udpResult) {
             NearbyDevice device = NearbyDevice.getDeviceInfoByByteArray(udpResult.getResultData());
             device.setIp(udpResult.getIp());
-            UDPReceiver.getInstance().stopReceive();
+//            UDPReceiver.getInstance().stopReceive();
+            UDPSender.getInstance().stop();
             EMTMFSDK.getInstance(mContext).stopSend();
         }
 
@@ -66,7 +73,8 @@ public class SoundWaveSender {
 
     public SoundWaveSender stopSend() {
         EMTMFSDK.getInstance(mContext).stopSend();
-        UDPReceiver.getInstance().stopReceive();
+        UDPSender.getInstance().stop();
+//        UDPReceiver.getInstance().stopReceive();
         return this;
     }
 
