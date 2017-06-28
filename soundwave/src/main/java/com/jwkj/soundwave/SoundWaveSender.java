@@ -53,6 +53,7 @@ public class SoundWaveSender {
                 .setInstructions(new byte[]{1})
                 .setTargetPort(port)
                 .setLocalReceivePort(port)
+                .setReceiveTimeOut(5*60*1000)
                 .start(callback);
     }
 
