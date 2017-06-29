@@ -5,7 +5,6 @@ import android.content.Context;
 import com.hdl.udpsenderlib.UDPReceiver;
 import com.hdl.udpsenderlib.UDPResult;
 import com.hdl.udpsenderlib.UDPResultCallback;
-import com.jwkj.soundwave.bean.NearbyDevice;
 import com.lsemtmf.genersdk.tools.emtmf.EMTMFSDK;
 import com.lsemtmf.genersdk.tools.emtmf.EMTMFSDKListener;
 
@@ -76,26 +75,11 @@ public class SoundWaveSender {
             }
         });
     }
-
-    UDPResultCallback ca = new UDPResultCallback() {
-        @Override
-        public void onNext(UDPResult udpResult) {
-            NearbyDevice device = NearbyDevice.getDeviceInfoByByteArray(udpResult.getResultData());
-            device.setIp(udpResult.getIp());
-            UDPReceiver.getInstance().stopReceive();
-//            UDPSender.getInstance().stop();
-            EMTMFSDK.getInstance(mContext).stopSend();
-        }
-
-        @Override
-        public void onError(Throwable throwable) {
-        }
-    };
-
     public SoundWaveSender stopSend() {
         EMTMFSDK.getInstance(mContext).stopSend();
 //        UDPSender.getInstance().stop();
         UDPReceiver.getInstance().stopReceive();
+        isReceive=false;
         return this;
     }
 
