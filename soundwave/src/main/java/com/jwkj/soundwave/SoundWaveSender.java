@@ -16,7 +16,6 @@ public class SoundWaveSender {
     private Context mContext;
     private int port = 9988;
     private ResultCallback callback;
-    private boolean isReceive = false;
 
     private SoundWaveSender() {
     }
@@ -57,11 +56,7 @@ public class SoundWaveSender {
 
             @Override
             public void onNext(UDPResult udpResult) {
-                if (!isReceive) {
-                    isReceive = true;
-                    callback.onNext(udpResult);
-                    callback.onCompleted();
-                }
+                callback.onNext(udpResult);
             }
 
             @Override
@@ -78,8 +73,7 @@ public class SoundWaveSender {
     public SoundWaveSender stopSend() {
         EMTMFSDK.getInstance(mContext).stopSend();
 //        UDPSender.getInstance().stop();
-        UDPReceiver.getInstance().stopReceive();
-        isReceive=false;
+        UDPReceiver.getInstance().with(mContext).stopReceive();
         return this;
     }
 
