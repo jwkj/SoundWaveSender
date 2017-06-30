@@ -48,9 +48,9 @@ public class SoundWaveSender {
 
     public void send(ResultCallback callback) {
         checkContextIsNull();
-        if (this.callback == null) {
+//        if (this.callback == null) {
             this.callback = callback;
-        }
+//        }
         EMTMFSDK.getInstance(mContext).sendWifiSet(mContext, ssid, pwd);
         if (isCanReceive) {
             isCanReceive = false;
