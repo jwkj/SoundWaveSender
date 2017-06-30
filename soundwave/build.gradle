@@ -27,7 +27,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     //udp发送器（也可以接收的哦）
-    compile 'com.github.huangdali:UDPSender:v1.2.3'
+    provided 'com.jwkj:udpsender:v2.0.1'
     compile files('libs/EMTMFSDK_0101_160914.jar')
 }
 
